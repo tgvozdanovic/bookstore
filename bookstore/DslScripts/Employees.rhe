@@ -1,28 +1,47 @@
 ﻿Module Bookstore
 {
 	Entity Employee
-	{
-		ShortString Name { Required; }
-		Integer VatNumber { Unique; }
-	}
+    {
+        Integer IdentificationNumber;
+        ShortString LastName { Required; }
+        ShortString FirstName { Required; }
+        ShortString Code { RegExMatch "\d{5,15}" "Code must have 5 to 15 digits."; }
+        DateTime WorkStarted { Required; }
+        DateTime WorkFinished;
+        Integer TestPeriod { MinValue 1; MaxValue 52; }
+        ShortString Iban { Required; Unique; MinLength 34; MaxLength 34; }
 
-	Entity Manager 
-	{
-		Extends Bookstore.Employee;
-		LongString BonusInformation;
-	}
+        UniqueMultiple 'LastName FirstName';
 
-	Entity Education
-	{
-		Reference Employee { Detail; }
-		DateTime DateOfEducation { Required; }
-		LongString Description { Required; }
-	}
+        ItemFilter FinishBeforeStart 'employee => employee.WorkFinished != null
+            && employee.WorkFinished.Value < employee.WorkStarted.Value';
+        InvalidData FinishBeforeStart 'It is not allowed to enter a WorkFinished time before the WorkStarted time.';
+    }
 
-	Entity EmployeeDepartment
-	{
-		Reference Employee { Detail; }
-		Reference Department { Required; }
-		UniqueMultiple 'Employee Department';
-	}
+    Entity Manager
+    {
+        Extends Bookstore.Employee;
+
+        ShortString Bonuses;
+
+        Reference Employee Bookstore.Employee;
+
+        Logging;
+    }
+
+    Entity EducationRecord
+    {
+        DateTime RecordDate;
+        ShortString Description;
+
+        Reference Employee Bookstore.Employee;
+    }
+
+    Entity EmployeeDepartment
+    {
+        Reference Employee { Detail; }
+        Reference Department { Required; }
+
+        UniqueMultiple 'Employee Department';
+    }
 }

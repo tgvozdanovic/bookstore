@@ -37,9 +37,15 @@
     <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="true" />
     <Property Name="NumberOfPages" Type="int" Nullable="true" />
-    <Property Name="SomeProperty" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="true" />
     <Property Name="AuthorID" Type="uniqueidentifier" customannotation:Index="{ Name: IX_AuthorID, Order: 0 }" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Bookstore_BookInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false"  customannotation:Index="{ Name: IX_ID, Order: 0 }"/>
+    <Property Name="NumberOfComments" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Bookstore_BookTopic">
     <Key>
@@ -73,13 +79,13 @@
     <Property Name="Code" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
-  <EntityType Name="Bookstore_Education">
+  <EntityType Name="Bookstore_EducationRecord">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="DateOfEducation" Type="datetime2" Precision="3" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RecordDate" Type="datetime2" Precision="3" Nullable="true" />
     <Property Name="EmployeeID" Type="uniqueidentifier" customannotation:Index="{ Name: IX_EmployeeID, Order: 0 }" Nullable="true" />
   </EntityType>
   <EntityType Name="Bookstore_Employee">
@@ -87,8 +93,14 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="VatNumber" Type="int" Nullable="true" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Iban" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IdentificationNumber" Type="int" Nullable="true" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TestPeriod" Type="int" Nullable="true" />
+    <Property Name="WorkFinished" Type="datetime2" Precision="3" Nullable="true" />
+    <Property Name="WorkStarted" Type="datetime2" Precision="3" Nullable="true" />
   </EntityType>
   <EntityType Name="Bookstore_EmployeeDepartment">
     <Key>
@@ -106,12 +118,23 @@
     <Property Name="OriginalLanguage" Type="nvarchar(max)" Nullable="true" />
     <Property Name="TranslatorID" Type="uniqueidentifier" customannotation:Index="{ Name: IX_TranslatorID, Order: 0 }" Nullable="true" />
   </EntityType>
+  <EntityType Name="Bookstore_Genre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsFiction" Type="bit" Nullable="true" />
+    <Property Name="Label" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
   <EntityType Name="Bookstore_Manager">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="uniqueidentifier" Nullable="false"  customannotation:Index="{ Name: IX_ID, Order: 0 }"/>
-    <Property Name="BonusInformation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Bonuses" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EmployeeID" Type="uniqueidentifier" customannotation:Index="{ Name: IX_EmployeeID, Order: 0 }" Nullable="true" />
   </EntityType>
   <EntityType Name="Bookstore_Person">
     <Key>
@@ -291,6 +314,18 @@
     <Property Name="IsAuthorized" Type="bit" Nullable="true" />
     <Property Name="RoleID" Type="uniqueidentifier" customannotation:Index="{ Name: IX_RoleID, Order: 0 }" Nullable="true" />
   </EntityType>
+  <Association Name="Bookstore_BookInfo_Base">
+    <End Role="Bookstore_Book" Type="Self.Bookstore_Book" Multiplicity="1" />
+    <End Role="Bookstore_BookInfo" Type="Self.Bookstore_BookInfo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bookstore_Book">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bookstore_BookInfo">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Bookstore_BookTopic_Book">
     <End Role="Bookstore_Book" Type="Self.Bookstore_Book" Multiplicity="0..1" />
     <End Role="Bookstore_BookTopic" Type="Self.Bookstore_BookTopic" Multiplicity="*" />
@@ -327,14 +362,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Bookstore_Education_Employee">
+  <Association Name="Bookstore_EducationRecord_Employee">
     <End Role="Bookstore_Employee" Type="Self.Bookstore_Employee" Multiplicity="0..1" />
-    <End Role="Bookstore_Education" Type="Self.Bookstore_Education" Multiplicity="*" />
+    <End Role="Bookstore_EducationRecord" Type="Self.Bookstore_EducationRecord" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Bookstore_Employee">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Bookstore_Education">
+      <Dependent Role="Bookstore_EducationRecord">
         <PropertyRef Name="EmployeeID" />
       </Dependent>
     </ReferentialConstraint>
@@ -372,6 +407,18 @@
       </Principal>
       <Dependent Role="Bookstore_ForeignBook">
         <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Bookstore_Manager_Employee">
+    <End Role="Bookstore_Employee" Type="Self.Bookstore_Employee" Multiplicity="0..1" />
+    <End Role="Bookstore_Manager" Type="Self.Bookstore_Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bookstore_Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bookstore_Manager">
+        <PropertyRef Name="EmployeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -558,14 +605,16 @@
   <EntityContainer Name="CodeFirstDatabase">
     
     <EntitySet Name="Bookstore_Book" EntityType="Self.Bookstore_Book" Schema="Bookstore" Table="Book" />
+    <EntitySet Name="Bookstore_BookInfo" EntityType="Self.Bookstore_BookInfo" Schema="Bookstore" Table="BookInfo" />
     <EntitySet Name="Bookstore_BookTopic" EntityType="Self.Bookstore_BookTopic" Schema="Bookstore" Table="BookTopic" />
     <EntitySet Name="Bookstore_ChildrensBook" EntityType="Self.Bookstore_ChildrensBook" Schema="Bookstore" Table="ChildrensBook" />
     <EntitySet Name="Bookstore_Comment" EntityType="Self.Bookstore_Comment" Schema="Bookstore" Table="Comment" />
     <EntitySet Name="Bookstore_Department" EntityType="Self.Bookstore_Department" Schema="Bookstore" Table="Department" />
-    <EntitySet Name="Bookstore_Education" EntityType="Self.Bookstore_Education" Schema="Bookstore" Table="Education" />
+    <EntitySet Name="Bookstore_EducationRecord" EntityType="Self.Bookstore_EducationRecord" Schema="Bookstore" Table="EducationRecord" />
     <EntitySet Name="Bookstore_Employee" EntityType="Self.Bookstore_Employee" Schema="Bookstore" Table="Employee" />
     <EntitySet Name="Bookstore_EmployeeDepartment" EntityType="Self.Bookstore_EmployeeDepartment" Schema="Bookstore" Table="EmployeeDepartment" />
     <EntitySet Name="Bookstore_ForeignBook" EntityType="Self.Bookstore_ForeignBook" Schema="Bookstore" Table="ForeignBook" />
+    <EntitySet Name="Bookstore_Genre" EntityType="Self.Bookstore_Genre" Schema="Bookstore" Table="Genre" />
     <EntitySet Name="Bookstore_Manager" EntityType="Self.Bookstore_Manager" Schema="Bookstore" Table="Manager" />
     <EntitySet Name="Bookstore_Person" EntityType="Self.Bookstore_Person" Schema="Bookstore" Table="Person" />
     <EntitySet Name="Bookstore_Topic" EntityType="Self.Bookstore_Topic" Schema="Bookstore" Table="Topic" />
@@ -585,6 +634,10 @@
     <EntitySet Name="Common_Role" EntityType="Self.Common_Role" Schema="Common" Table="Role" />
     <EntitySet Name="Common_RoleInheritsRole" EntityType="Self.Common_RoleInheritsRole" Schema="Common" Table="RoleInheritsRole" />
     <EntitySet Name="Common_RolePermission" EntityType="Self.Common_RolePermission" Schema="Common" Table="RolePermission" />
+  <AssociationSet Name="Bookstore_BookInfo_Base" Association="Self.Bookstore_BookInfo_Base">
+    <End Role="Bookstore_Book" EntitySet="Bookstore_Book" />
+    <End Role="Bookstore_BookInfo" EntitySet="Bookstore_BookInfo" />
+  </AssociationSet>
   <AssociationSet Name="Bookstore_BookTopic_Book" Association="Self.Bookstore_BookTopic_Book">
     <End Role="Bookstore_Book" EntitySet="Bookstore_Book" />
     <End Role="Bookstore_BookTopic" EntitySet="Bookstore_BookTopic" />
@@ -597,9 +650,9 @@
     <End Role="Bookstore_Book" EntitySet="Bookstore_Book" />
     <End Role="Bookstore_Comment" EntitySet="Bookstore_Comment" />
   </AssociationSet>
-  <AssociationSet Name="Bookstore_Education_Employee" Association="Self.Bookstore_Education_Employee">
+  <AssociationSet Name="Bookstore_EducationRecord_Employee" Association="Self.Bookstore_EducationRecord_Employee">
     <End Role="Bookstore_Employee" EntitySet="Bookstore_Employee" />
-    <End Role="Bookstore_Education" EntitySet="Bookstore_Education" />
+    <End Role="Bookstore_EducationRecord" EntitySet="Bookstore_EducationRecord" />
   </AssociationSet>
   <AssociationSet Name="Bookstore_EmployeeDepartment_Department" Association="Self.Bookstore_EmployeeDepartment_Department">
     <End Role="Bookstore_Department" EntitySet="Bookstore_Department" />
@@ -612,6 +665,10 @@
   <AssociationSet Name="Bookstore_ForeignBook_Base" Association="Self.Bookstore_ForeignBook_Base">
     <End Role="Bookstore_Book" EntitySet="Bookstore_Book" />
     <End Role="Bookstore_ForeignBook" EntitySet="Bookstore_ForeignBook" />
+  </AssociationSet>
+  <AssociationSet Name="Bookstore_Manager_Employee" Association="Self.Bookstore_Manager_Employee">
+    <End Role="Bookstore_Employee" EntitySet="Bookstore_Employee" />
+    <End Role="Bookstore_Manager" EntitySet="Bookstore_Manager" />
   </AssociationSet>
   <AssociationSet Name="Bookstore_Manager_Base" Association="Self.Bookstore_Manager_Base">
     <End Role="Bookstore_Employee" EntitySet="Bookstore_Employee" />

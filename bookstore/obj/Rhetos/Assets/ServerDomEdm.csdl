@@ -86,12 +86,20 @@
     <Property Name="ID" Type="Guid" Nullable="false" />
     <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="NumberOfPages" Type="Int32" />
-    <Property Name="SomeProperty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="AuthorID" Type="Guid" />
+    <NavigationProperty Name="Extension_BookInfo" Relationship="Self.Bookstore_BookInfo_Base" FromRole="Bookstore_BookInfo_Base_Target" ToRole="Bookstore_BookInfo_Base_Source" />
     <NavigationProperty Name="Extension_ChildrensBook" Relationship="Self.Bookstore_ChildrensBook_Base" FromRole="Bookstore_ChildrensBook_Base_Target" ToRole="Bookstore_ChildrensBook_Base_Source" />
     <NavigationProperty Name="Extension_ForeignBook" Relationship="Self.Bookstore_ForeignBook_Base" FromRole="Bookstore_ForeignBook_Base_Target" ToRole="Bookstore_ForeignBook_Base_Source" />
     <NavigationProperty Name="Author" Relationship="Self.Bookstore_Book_Author" FromRole="Bookstore_Book_Author_Source" ToRole="Bookstore_Book_Author_Target" />
+  </EntityType>
+  <EntityType Name="Bookstore_BookInfo" customannotation:ClrType="Common.Queryable.Bookstore_BookInfo, bookstore">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="NumberOfComments" Type="Int32" />
+    <NavigationProperty Name="Base" Relationship="Self.Bookstore_BookInfo_Base" FromRole="Bookstore_BookInfo_Base_Source" ToRole="Bookstore_BookInfo_Base_Target" />
   </EntityType>
   <EntityType Name="Bookstore_BookTopic" customannotation:ClrType="Common.Queryable.Bookstore_BookTopic, bookstore">
     <Key>
@@ -129,23 +137,29 @@
     <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Bookstore_Education" customannotation:ClrType="Common.Queryable.Bookstore_Education, bookstore">
+  <EntityType Name="Bookstore_EducationRecord" customannotation:ClrType="Common.Queryable.Bookstore_EducationRecord, bookstore">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Guid" Nullable="false" />
-    <Property Name="DateOfEducation" Type="DateTime" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RecordDate" Type="DateTime" />
     <Property Name="EmployeeID" Type="Guid" />
-    <NavigationProperty Name="Employee" Relationship="Self.Bookstore_Education_Employee" FromRole="Bookstore_Education_Employee_Source" ToRole="Bookstore_Education_Employee_Target" />
+    <NavigationProperty Name="Employee" Relationship="Self.Bookstore_EducationRecord_Employee" FromRole="Bookstore_EducationRecord_Employee_Source" ToRole="Bookstore_EducationRecord_Employee_Target" />
   </EntityType>
   <EntityType Name="Bookstore_Employee" customannotation:ClrType="Common.Queryable.Bookstore_Employee, bookstore">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="VatNumber" Type="Int32" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Iban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdentificationNumber" Type="Int32" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TestPeriod" Type="Int32" />
+    <Property Name="WorkFinished" Type="DateTime" />
+    <Property Name="WorkStarted" Type="DateTime" />
     <NavigationProperty Name="Extension_Manager" Relationship="Self.Bookstore_Manager_Base" FromRole="Bookstore_Manager_Base_Target" ToRole="Bookstore_Manager_Base_Source" />
   </EntityType>
   <EntityType Name="Bookstore_EmployeeDepartment" customannotation:ClrType="Common.Queryable.Bookstore_EmployeeDepartment, bookstore">
@@ -168,12 +182,24 @@
     <NavigationProperty Name="Base" Relationship="Self.Bookstore_ForeignBook_Base" FromRole="Bookstore_ForeignBook_Base_Source" ToRole="Bookstore_ForeignBook_Base_Target" />
     <NavigationProperty Name="Translator" Relationship="Self.Bookstore_ForeignBook_Translator" FromRole="Bookstore_ForeignBook_Translator_Source" ToRole="Bookstore_ForeignBook_Translator_Target" />
   </EntityType>
+  <EntityType Name="Bookstore_Genre" customannotation:ClrType="Common.Queryable.Bookstore_Genre, bookstore">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsFiction" Type="Boolean" />
+    <Property Name="Label" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="Bookstore_Manager" customannotation:ClrType="Common.Queryable.Bookstore_Manager, bookstore">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Guid" Nullable="false" />
-    <Property Name="BonusInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Bonuses" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeID" Type="Guid" />
+    <NavigationProperty Name="Employee" Relationship="Self.Bookstore_Manager_Employee" FromRole="Bookstore_Manager_Employee_Source" ToRole="Bookstore_Manager_Employee_Target" />
     <NavigationProperty Name="Base" Relationship="Self.Bookstore_Manager_Base" FromRole="Bookstore_Manager_Base_Source" ToRole="Bookstore_Manager_Base_Target" />
   </EntityType>
   <EntityType Name="Bookstore_Person" customannotation:ClrType="Common.Queryable.Bookstore_Person, bookstore">
@@ -365,6 +391,18 @@
     <NavigationProperty Name="Claim" Relationship="Self.Common_RolePermission_Claim" FromRole="Common_RolePermission_Claim_Source" ToRole="Common_RolePermission_Claim_Target" />
     <NavigationProperty Name="Role" Relationship="Self.Common_RolePermission_Role" FromRole="Common_RolePermission_Role_Source" ToRole="Common_RolePermission_Role_Target" />
   </EntityType>
+  <Association Name="Bookstore_BookInfo_Base">
+    <End Role="Bookstore_BookInfo_Base_Source" Type="Self.Bookstore_BookInfo" Multiplicity="0..1" />
+    <End Role="Bookstore_BookInfo_Base_Target" Type="Self.Bookstore_Book" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Bookstore_BookInfo_Base_Target">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bookstore_BookInfo_Base_Source">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Bookstore_BookTopic_Book">
     <End Role="Bookstore_BookTopic_Book_Source" Type="Self.Bookstore_BookTopic" Multiplicity="*" />
     <End Role="Bookstore_BookTopic_Book_Target" Type="Self.Bookstore_Book" Multiplicity="0..1" />
@@ -401,14 +439,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Bookstore_Education_Employee">
-    <End Role="Bookstore_Education_Employee_Source" Type="Self.Bookstore_Education" Multiplicity="*" />
-    <End Role="Bookstore_Education_Employee_Target" Type="Self.Bookstore_Employee" Multiplicity="0..1" />
+  <Association Name="Bookstore_EducationRecord_Employee">
+    <End Role="Bookstore_EducationRecord_Employee_Source" Type="Self.Bookstore_EducationRecord" Multiplicity="*" />
+    <End Role="Bookstore_EducationRecord_Employee_Target" Type="Self.Bookstore_Employee" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="Bookstore_Education_Employee_Target">
+      <Principal Role="Bookstore_EducationRecord_Employee_Target">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Bookstore_Education_Employee_Source">
+      <Dependent Role="Bookstore_EducationRecord_Employee_Source">
         <PropertyRef Name="EmployeeID" />
       </Dependent>
     </ReferentialConstraint>
@@ -446,6 +484,18 @@
       </Principal>
       <Dependent Role="Bookstore_ForeignBook_Base_Source">
         <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Bookstore_Manager_Employee">
+    <End Role="Bookstore_Manager_Employee_Source" Type="Self.Bookstore_Manager" Multiplicity="*" />
+    <End Role="Bookstore_Manager_Employee_Target" Type="Self.Bookstore_Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Bookstore_Manager_Employee_Target">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bookstore_Manager_Employee_Source">
+        <PropertyRef Name="EmployeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -632,14 +682,16 @@
   <EntityContainer Name="EntityFrameworkContext" customannotation:UseClrTypes="true">
     
     <EntitySet Name="Bookstore_Book" EntityType="Self.Bookstore_Book" />
+    <EntitySet Name="Bookstore_BookInfo" EntityType="Self.Bookstore_BookInfo" />
     <EntitySet Name="Bookstore_BookTopic" EntityType="Self.Bookstore_BookTopic" />
     <EntitySet Name="Bookstore_ChildrensBook" EntityType="Self.Bookstore_ChildrensBook" />
     <EntitySet Name="Bookstore_Comment" EntityType="Self.Bookstore_Comment" />
     <EntitySet Name="Bookstore_Department" EntityType="Self.Bookstore_Department" />
-    <EntitySet Name="Bookstore_Education" EntityType="Self.Bookstore_Education" />
+    <EntitySet Name="Bookstore_EducationRecord" EntityType="Self.Bookstore_EducationRecord" />
     <EntitySet Name="Bookstore_Employee" EntityType="Self.Bookstore_Employee" />
     <EntitySet Name="Bookstore_EmployeeDepartment" EntityType="Self.Bookstore_EmployeeDepartment" />
     <EntitySet Name="Bookstore_ForeignBook" EntityType="Self.Bookstore_ForeignBook" />
+    <EntitySet Name="Bookstore_Genre" EntityType="Self.Bookstore_Genre" />
     <EntitySet Name="Bookstore_Manager" EntityType="Self.Bookstore_Manager" />
     <EntitySet Name="Bookstore_Person" EntityType="Self.Bookstore_Person" />
     <EntitySet Name="Bookstore_Topic" EntityType="Self.Bookstore_Topic" />
@@ -659,6 +711,10 @@
     <EntitySet Name="Common_Role" EntityType="Self.Common_Role" />
     <EntitySet Name="Common_RoleInheritsRole" EntityType="Self.Common_RoleInheritsRole" />
     <EntitySet Name="Common_RolePermission" EntityType="Self.Common_RolePermission" />
+	<AssociationSet Name="Bookstore_BookInfo_Base" Association="Self.Bookstore_BookInfo_Base">
+		<End Role="Bookstore_BookInfo_Base_Source" EntitySet="Bookstore_BookInfo" />
+		<End Role="Bookstore_BookInfo_Base_Target" EntitySet="Bookstore_Book" />
+	</AssociationSet>
 	<AssociationSet Name="Bookstore_BookTopic_Book" Association="Self.Bookstore_BookTopic_Book">
 		<End Role="Bookstore_BookTopic_Book_Source" EntitySet="Bookstore_BookTopic" />
 		<End Role="Bookstore_BookTopic_Book_Target" EntitySet="Bookstore_Book" />
@@ -671,9 +727,9 @@
 		<End Role="Bookstore_Comment_Book_Source" EntitySet="Bookstore_Comment" />
 		<End Role="Bookstore_Comment_Book_Target" EntitySet="Bookstore_Book" />
 	</AssociationSet>
-	<AssociationSet Name="Bookstore_Education_Employee" Association="Self.Bookstore_Education_Employee">
-		<End Role="Bookstore_Education_Employee_Source" EntitySet="Bookstore_Education" />
-		<End Role="Bookstore_Education_Employee_Target" EntitySet="Bookstore_Employee" />
+	<AssociationSet Name="Bookstore_EducationRecord_Employee" Association="Self.Bookstore_EducationRecord_Employee">
+		<End Role="Bookstore_EducationRecord_Employee_Source" EntitySet="Bookstore_EducationRecord" />
+		<End Role="Bookstore_EducationRecord_Employee_Target" EntitySet="Bookstore_Employee" />
 	</AssociationSet>
 	<AssociationSet Name="Bookstore_EmployeeDepartment_Department" Association="Self.Bookstore_EmployeeDepartment_Department">
 		<End Role="Bookstore_EmployeeDepartment_Department_Source" EntitySet="Bookstore_EmployeeDepartment" />
@@ -686,6 +742,10 @@
 	<AssociationSet Name="Bookstore_ForeignBook_Base" Association="Self.Bookstore_ForeignBook_Base">
 		<End Role="Bookstore_ForeignBook_Base_Source" EntitySet="Bookstore_ForeignBook" />
 		<End Role="Bookstore_ForeignBook_Base_Target" EntitySet="Bookstore_Book" />
+	</AssociationSet>
+	<AssociationSet Name="Bookstore_Manager_Employee" Association="Self.Bookstore_Manager_Employee">
+		<End Role="Bookstore_Manager_Employee_Source" EntitySet="Bookstore_Manager" />
+		<End Role="Bookstore_Manager_Employee_Target" EntitySet="Bookstore_Employee" />
 	</AssociationSet>
 	<AssociationSet Name="Bookstore_Manager_Base" Association="Self.Bookstore_Manager_Base">
 		<End Role="Bookstore_Manager_Base_Source" EntitySet="Bookstore_Manager" />
