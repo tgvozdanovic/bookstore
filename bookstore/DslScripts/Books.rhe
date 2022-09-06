@@ -1,0 +1,80 @@
+﻿//Module Bookstore
+//{
+//   Entity Book
+//   {
+//      ShortString Code { Required; AutoCode; }
+//      ShortString Title { Required; }
+//      Integer NumberOfPages;
+//
+//      ItemFilter CommonMisspelling 'book => book.Title.Contains("curiousity")';
+//      InvalidData CommonMisspelling 'It is not allowed to enter misspelled word "curiousity".';
+//
+//      Logging;
+//   }
+//}
+
+Module Bookstore;
+Entity Bookstore.Book;
+ShortString Bookstore.Book.Code;
+AutoCode Bookstore.Book.Code;
+Required Bookstore.Book.Code;
+Unique Bookstore.Book.Code;
+ShortString Bookstore.Book.Title;
+Required Bookstore.Book.Title;
+Integer Bookstore.Book.NumberOfPages;
+ShortString Bookstore.Book.SomeProperty;
+ItemFilter Bookstore.Book.CommonMisspelling 'book => book.Title.Contains("curiousity")';
+InvalidData Bookstore.Book.CommonMisspelling 'It is not allowed to enter misspelled word "curiousity".';
+
+Logging Bookstore.Book;
+Reference Bookstore.Book Author Bookstore.Person;
+
+Module Bookstore
+{
+	Entity Person
+	{
+		ShortString Name;
+	}
+
+	Entity Comment
+	{
+		Reference Book { Detail; }
+		LongString Text;
+	}
+
+	Entity ChildrensBook
+	{
+		Extends Bookstore.Book;
+
+		Integer AgeFrom;
+		Integer AgeTo;
+		IntegerRange AgeFrom AgeTo;
+	}
+
+	Entity ForeignBook
+	{
+		Extends Bookstore.Book;
+
+		ShortString OriginalLanguage;
+		Reference Translator Bookstore.Person;
+	}
+
+	Entity Topic
+	{
+		ShortString Name { Unique; Required; }
+	}
+
+	Entity BookTopic
+	{
+		Reference Book { Detail; }
+		Reference Topic { Required; }
+
+		UniqueMultiple 'Book Topic';
+	}
+
+	Entity Department
+	{
+		ShortString Code { Unique; }
+		LongString Description;
+	}	
+}

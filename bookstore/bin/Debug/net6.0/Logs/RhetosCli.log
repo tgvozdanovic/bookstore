@@ -1,0 +1,396 @@
+2022-09-05 12:06:40.8168|INFO|Rhetos DbUpdate base|Started 'dotnet' process 11360.
+2022-09-05 12:06:41.0577|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:06:41.0911|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:06:41.8313|INFO|DatabaseDeployment|SQL connection: DataSource=(localdb)\MSSQLLocalDB, InitialCatalog=Bookstore
+2022-09-05 12:06:55.0671|ERROR|Rhetos DbUpdate|Rhetos.FrameworkException: Could not connect to server '(localdb)\MSSQLLocalDB', database 'Bookstore' using integrated security account 'TomislavGvozdanovic'.  ---> System.Data.SqlClient.SqlException (0x80131904): Cannot open database "Bookstore" requested by the login. The login failed. Login failed for user 'AzureAD\TomislavGvozdanovic'.    at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, ... (see build output for more info)
+2022-09-05 12:06:55.0671|INFO|Rhetos DbUpdate|Rhetos.FrameworkException: Could not connect to server '(localdb)\MSSQLLocalDB', database 'Bookstore' using integrated security account 'TomislavGvozdanovic'.
+ ---> System.Data.SqlClient.SqlException (0x80131904): Cannot open database "Bookstore" requested by the login. The login failed.
+Login failed for user 'AzureAD\TomislavGvozdanovic'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Rhetos.Utilities.MsSqlUtility.CreateConnection(String connectionString, IUserInfo userInfo)
+ClientConnectionId:ba2baf2f-c394-42a7-9cdc-85f2691b937a
+ErrorNumber:4060,State:1,Class:11
+   --- End of inner exception stack trace ---
+   at Rhetos.Utilities.MsSqlUtility.CreateConnection(String connectionString, IUserInfo userInfo)
+   at Rhetos.Persistence.PersistenceTransaction.get_Connection()
+   at Rhetos.Persistence.BaseSqlExecuter.CreateCommand(String sql, Object[] parameters)
+   at Rhetos.Persistence.BaseSqlExecuter.ExecuteReaderRaw(String query, Object[] parameters, Action`1 read)
+   at Rhetos.Utilities.SqlExecuterExtensions.ExecuteReader(ISqlExecuter sqlExecuter, String query, Action`1 read)
+   at Rhetos.Deployment.ConnectionTesting.ValidateDbConnection()
+   at Rhetos.Deployment.DatabaseDeployment.UpdateDatabase()
+   at Rhetos.Deployment.DatabaseUpdate.UpdateDatabase()
+   at Rhetos.Program.DbUpdate(String startupAssembly, Boolean shortTransactions, Boolean skipRecompute)
+   at Rhetos.Program.<>c__DisplayClass8_2.<Run>b__7()
+   at Rhetos.Program.SafeExecuteCommand(Action action, String commandName)
+2022-09-05 12:07:09.4739|INFO|Rhetos DbUpdate base|Started 'dotnet' process 18316.
+2022-09-05 12:07:09.7167|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:07:09.7438|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:07:10.1126|INFO|DatabaseDeployment|SQL connection: DataSource=., InitialCatalog=Bookstore
+2022-09-05 12:07:27.2740|ERROR|Rhetos DbUpdate|Rhetos.FrameworkException: Could not connect to server '.', database 'Bookstore' using integrated security account 'TomislavGvozdanovic'.  ---> System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not ... (see build output for more info)
+2022-09-05 12:07:27.2740|INFO|Rhetos DbUpdate|Rhetos.FrameworkException: Could not connect to server '.', database 'Bookstore' using integrated security account 'TomislavGvozdanovic'.
+ ---> System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (2): The system cannot find the file specified.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Rhetos.Utilities.MsSqlUtility.CreateConnection(String connectionString, IUserInfo userInfo)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+ErrorNumber:2,State:0,Class:20
+   --- End of inner exception stack trace ---
+   at Rhetos.Utilities.MsSqlUtility.CreateConnection(String connectionString, IUserInfo userInfo)
+   at Rhetos.Persistence.PersistenceTransaction.get_Connection()
+   at Rhetos.Persistence.BaseSqlExecuter.CreateCommand(String sql, Object[] parameters)
+   at Rhetos.Persistence.BaseSqlExecuter.ExecuteReaderRaw(String query, Object[] parameters, Action`1 read)
+   at Rhetos.Utilities.SqlExecuterExtensions.ExecuteReader(ISqlExecuter sqlExecuter, String query, Action`1 read)
+   at Rhetos.Deployment.ConnectionTesting.ValidateDbConnection()
+   at Rhetos.Deployment.DatabaseDeployment.UpdateDatabase()
+   at Rhetos.Deployment.DatabaseUpdate.UpdateDatabase()
+   at Rhetos.Program.DbUpdate(String startupAssembly, Boolean shortTransactions, Boolean skipRecompute)
+   at Rhetos.Program.<>c__DisplayClass8_2.<Run>b__7()
+   at Rhetos.Program.SafeExecuteCommand(Action action, String commandName)
+2022-09-05 12:08:03.6860|INFO|Rhetos DbUpdate base|Started 'dotnet' process 13172.
+2022-09-05 12:08:03.9067|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:08:03.9350|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:08:04.3046|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-05 12:08:04.4465|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-05 12:08:05.2909|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-05 12:08:05.3827|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 0 remaining.
+2022-09-05 12:08:05.3827|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-05 12:08:05.3827|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\0.9.12\1 - AppliedConcept Options1 Options2.sql (tag 533F534B-388C-4CE1-B8AE-A308542471F5)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\0.9.14\1 - Claim.Active.sql (tag 323D7F48-433F-49E9-983B-09A4B7317077)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\0.9.29\1 - RoleInheritsRole renames columns.sql (tag 0D99CDE7-E4CB-4FBF-937B-4ADEEEBC46CE)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\0.9.29\2 - Permissions to RP and PP.sql (tag 33EA1F9E-1A89-4CF0-9AD3-A8E10BEF2D3C)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\0.9.35\1 - A new tag in create property.sql (tag E2B91BB7-FED3-45DB-AFB1-61CEF615C2C3)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\1.3\1 - Clear excess dependencies for subtype id.sql (tag B3D3CD35-D41F-4E70-A490-94CBD12226FF)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\1.11\1 - DataStructureExtendsInfo to UniqueReferenceInfo.sql (tag 0246E7EA-F2F2-419B-9710-1149838E8604)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\2.4\1 - KeepSynchronizedMetadata for Polymorphic.sql (tag BD03D06C-2EC3-4322-B46F-A88EEFB88572)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\2.12\1 - Optimized index CreateQuery modification.sql (tag F0F1C9B6-058D-41DF-8514-DF9D7BD2D701)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\2.12\2 - Separate foreign key concept.sql (tag 654F5AA3-4DB4-4C3A-8AF7-52CA3BBC5E2C)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\4.3\1 - Set schema authorization to dbo.sql (tag 191DE223-880F-40E8-9D14-75883886B6E1)
+2022-09-05 12:08:05.4010|INFO|DataMigration|Executing Rhetos.CommonConcepts\4.3\2 - Clustered PK on migration tables.sql (tag 366824BC-4E2F-4025-97CE-6C892A00C5DA)
+2022-09-05 12:08:05.9624|INFO|DataMigration|Executed 12 of 12 scripts.
+2022-09-05 12:08:05.9624|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-05 12:08:05.9624|INFO|DatabaseDeployment|Upgrading database.
+2022-09-05 12:08:05.9894|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating ModuleInfo Bookstore/Rhetos.DatabaseGenerator.DefaultConcepts.ModuleDatabaseDefinition, ID=484A3870-A68E-42B9-A67A-88C5F9B9DF16.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating ModuleInfo Common/Rhetos.DatabaseGenerator.DefaultConcepts.ModuleDatabaseDefinition, ID=61F1F9AA-09EA-4F98-9712-292B1DCB5917.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Book/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=E817A7AB-C900-4912-9DD8-D9305E6DF121.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating SqlObjectInfo Bookstore.SchemaAuthorization/Rhetos.DatabaseGenerator.DefaultConcepts.SqlObjectDatabaseDefinition, ID=3F7F76F1-C4FE-4ED9-B6E1-C74BACBB4F6A.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.AutoCodeCache/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=AD3AFDF4-56B7-4DF0-BF2B-5EE59180D730.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=E4DC16EE-8484-49E1-B7F2-924C4B544294.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.ExclusiveLock/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=6CEFBFCB-292C-4B94-BB8A-ACDF228B9092.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.FilterId/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=90B1C38E-E2D7-482B-BEFF-156AE932BD67.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.KeepSynchronizedMetadata/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=AB889553-AFFE-43C8-80FC-F3D0A5E978F3.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.Log/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=10A95A13-A961-47C5-9B18-1E75320C1ED5.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.UserName/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=A108039B-78AE-4A32-AD65-5B55D185C684.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.Workstation/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=3D1C59F9-14B4-4D9F-842E-7B3FF6190718.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.ContextInfo/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=6646EF5F-3A48-4ADB-A5A5-B48CDA7C022E.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.Action/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=109405F8-89EE-4A28-9EAF-B87B88A640A2.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.TableName/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=6F763CA9-C65E-4DB4-A32E-BD544E7109C2.
+2022-09-05 12:08:05.9894|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.ItemId/Rhetos.DatabaseGenerator.DefaultConcepts.GuidPropertyDatabaseDefinition, ID=CBF4D099-C92C-4FD3-8F05-A0D350E3DAA3.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.Description/Rhetos.DatabaseGenerator.DefaultConcepts.LongStringPropertyDatabaseDefinition, ID=B5283151-19FB-4B18-B8DA-9811B5CBD0C9.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Log.Created/Rhetos.DatabaseGenerator.DefaultConcepts.DateTimePropertyDatabaseDefinition, ID=08D21FCB-E31D-4F2D-A0AE-5FF948619909.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.LogReader/Rhetos.DatabaseGenerator.DefaultConcepts.SqlQueryableDatabaseDefinition, ID=93357AE7-1033-419E-9E55-43D9C505C621.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.LogRelatedItem/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=4BD583E7-B4FA-4D39-A9B4-EF67A844A2DA.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.LogRelatedItem.TableName/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=9007336A-5976-4670-B8A0-8AB56819CE14.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.LogRelatedItem.Relation/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=93A77BA4-FCDF-408C-9D35-4D7D56FA2CB8.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.LogRelatedItem.ItemId/Rhetos.DatabaseGenerator.DefaultConcepts.GuidPropertyDatabaseDefinition, ID=B3725EC0-5AFB-46AE-B539-0E88D8974541.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.LogRelatedItem.Log/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=2C28DC65-C412-4E74-8C6E-156F4753335E.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.LogRelatedItemReader/Rhetos.DatabaseGenerator.DefaultConcepts.SqlQueryableDatabaseDefinition, ID=9CB1E133-8F15-47EA-9D05-39A0AA638B6D.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=E6851402-CBF2-4A1C-913F-49B1E2D0E7E9.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.PrincipalHasRole/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=8D7977BB-B078-4B9C-9832-14B7AD5C090A.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.PrincipalPermission/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=85101380-CBD8-4D6A-A96F-D5018E8D6F8F.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.RelatedEventsSource/Rhetos.DatabaseGenerator.DefaultConcepts.SqlQueryableDatabaseDefinition, ID=A1A5FD13-8F64-4102-8104-5A4B2804962A.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.Role/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=3ED844F9-B746-4C80-82D4-EC203C6CF165.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.RoleInheritsRole/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=17A5DDF4-CA70-4966-8D8B-E9B682284F65.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Common.RolePermission/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=7B2EF374-ADEF-4E7D-9892-6060D7A90825.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlObjectInfo Common.SchemaAuthorization/Rhetos.DatabaseGenerator.DefaultConcepts.SqlObjectDatabaseDefinition, ID=562CB480-0ED2-46B2-B443-D03AC2FDD2D4.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.AutoCodeCache.Entity/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=78DD6464-1CF4-45A5-86C5-5C615C445E37.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.AutoCodeCache.Property/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=A4B3BF39-6CF5-48DD-942D-259826B32D55.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.AutoCodeCache.Grouping/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=85F7ADDC-88A4-4AD7-BFD0-07150343FE53.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.AutoCodeCache.Prefix/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=D56842B4-116D-4C66-9BDB-4CB3589FA11E.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.AutoCodeCache.'Entity Property Grouping Prefix'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=CFB85831-F2A3-47D0-A45C-0DE5F1D75B95.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.AutoCodeCache.MinDigits/Rhetos.DatabaseGenerator.DefaultConcepts.IntegerPropertyDatabaseDefinition, ID=8382E348-E2AD-447C-A79A-1EDA8BDA034D.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.AutoCodeCache.LastCode/Rhetos.DatabaseGenerator.DefaultConcepts.IntegerPropertyDatabaseDefinition, ID=7EA8ACCD-471F-4B89-B83A-72A313EFA4BE.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlProcedureInfo Common.AutoCodeCacheGetNext/Rhetos.DatabaseGenerator.DefaultConcepts.SqlProcedureDatabaseDefinition, ID=3DECF397-06CC-4E9D-A15C-F4AFA7C8FBCD.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlProcedureInfo Common.AutoCodeCacheUpdate/Rhetos.DatabaseGenerator.DefaultConcepts.SqlProcedureDatabaseDefinition, ID=AA9BB683-C7A6-44A0-998B-3B0E0A56DB65.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Bookstore.Book/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=DAC5CE37-504E-425B-864D-6C1C45764FE7.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Book.Code/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=AF73199E-5745-4167-9018-B4AB3D5149CA.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Book.NumberOfPages/Rhetos.DatabaseGenerator.DefaultConcepts.IntegerPropertyDatabaseDefinition, ID=07E4FA3B-677B-489B-9C7B-47CB5B5F3B1C.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Book.Title/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=BEFFD134-1260-404E-8469-7BA6A3748552.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.Book.Code/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=C41CD143-6E71-4DBA-9CE0-6BCA717FB9CA.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Claim.Active/Rhetos.DatabaseGenerator.DefaultConcepts.BoolPropertyDatabaseDefinition, ID=7CB54C59-C3C1-4A1E-BCCB-567F76FFD9A3.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Claim.ClaimResource/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=461C66EA-A2BF-4C2C-8195-23E7B03DD300.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Claim.ClaimRight/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=8E7A3AE1-61A1-4D61-B9FD-A9DD10D47F68.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=5DB7E2FD-261B-469F-891E-5A23E6B45DB3.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.Claim.'ClaimResource ClaimRight'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=99B8DB98-9448-4C8C-9645-67A2717C2DEB.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.ExclusiveLock.LockFinish/Rhetos.DatabaseGenerator.DefaultConcepts.DateTimePropertyDatabaseDefinition, ID=74FB727B-C06E-4B19-A5A9-801BAC39B293.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.ExclusiveLock.LockStart/Rhetos.DatabaseGenerator.DefaultConcepts.DateTimePropertyDatabaseDefinition, ID=E7243A39-DF45-4DF1-987D-8706177D9E7E.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.ExclusiveLock.ResourceID/Rhetos.DatabaseGenerator.DefaultConcepts.GuidPropertyDatabaseDefinition, ID=5D4E5A38-7F1C-46CB-9FB2-C1AE029CEF62.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.ExclusiveLock.ResourceType/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=3D7A28BF-FBEF-4FC0-BE39-8D9B19E9FABA.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.ExclusiveLock.UserName/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=E265EFD7-757E-40E8-8C45-51E36086E48B.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.ExclusiveLock.Workstation/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=335A449C-450E-4E66-A644-50FCBA5E0C55.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.ExclusiveLock.'ResourceID ResourceType'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=A71E9CAD-961E-4112-8F53-2C58B15FB776.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.FilterId.Handle/Rhetos.DatabaseGenerator.DefaultConcepts.GuidPropertyDatabaseDefinition, ID=9AAE568B-08E4-4CE3-8B41-F993EF126DBD.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.FilterId.Value/Rhetos.DatabaseGenerator.DefaultConcepts.GuidPropertyDatabaseDefinition, ID=91C0AE6E-74BF-4F04-A70F-4B69CA921E1B.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.FilterId.'Handle Value'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=E3BC4393-1A40-4E02-8151-C3C4CCECE9E4.
+2022-09-05 12:08:06.0027|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.KeepSynchronizedMetadata.Context/Rhetos.DatabaseGenerator.DefaultConcepts.LongStringPropertyDatabaseDefinition, ID=1EE56C04-142F-4491-9AD5-135A5E3018A7.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.KeepSynchronizedMetadata.Source/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=BA2FFFC9-47CE-4517-8AAE-A860F996C45B.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.KeepSynchronizedMetadata.Target/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=20CDE6F6-22FC-4831-8B14-6763874C91D6.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.Log.'TableName Action'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=677E3558-D0E1-4155-A39B-91FC508AD0F5.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.Log.ItemId/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=2BF5AA80-A5C3-4D5D-A1CE-E158A6D7B7FD.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.LogRelatedItem.ItemId/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=883A16BA-9866-4DC9-B924-A9A74E0E6D45.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.LogRelatedItem.Log/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=1AE9B0B3-310D-409C-B5DA-F040460F9F6B.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.LogRelatedItem.TableName/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=9081E762-2DD5-4B8F-856A-0BB79E4305A4.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Principal.Name/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=FD9C072A-BF0E-41D4-BF5B-D3C708DE205C.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=73FAD547-457F-409F-A00D-ED99EA5523DB.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.Principal.Name/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=C7CF1969-05FE-4763-B01C-AB50D4BF538B.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.PrincipalHasRole.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=1D557A39-64D8-479B-B388-71029D21429E.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.PrincipalHasRole.Role/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=E746BA40-2095-4A72-BC03-DFB54DA7E758.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.PrincipalHasRole/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=4749FF19-E500-4EB1-9868-7697ECC71235.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.PrincipalHasRole.'Principal Role'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=2DBE0769-FD49-4D29-A178-4DD3CFEE9829.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.PrincipalHasRole.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=9582BD03-C4F4-460C-A96D-DAB7ED485401.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.PrincipalPermission.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=F65CB025-AC76-4729-B898-0E018F7B19D5.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.PrincipalPermission.IsAuthorized/Rhetos.DatabaseGenerator.DefaultConcepts.BoolPropertyDatabaseDefinition, ID=2D4FB45A-933A-44E5-B17E-FD06BDF64251.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.PrincipalPermission.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=5BCBF247-0564-4340-8B67-16F7EF7EE042.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.PrincipalPermission/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=13D227A0-984F-4B29-9232-C477E16DB48D.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.PrincipalPermission.'Principal Claim'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=465C5077-415E-4D25-95B4-1E917B09CAA4.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.PrincipalPermission.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=48B0C677-1B1A-44EB-B3CA-C2E67382CDBB.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.PrincipalPermission.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=8E8F1CDC-500F-43E0-B71C-E330A6C5D289.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.Role.Name/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=686D4D4A-0058-410F-91E2-97483040C9F2.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.Role/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=3ADF8F94-42C3-4446-8EE0-ECE49B29D7C0.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.Role.Name/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=057B7072-1584-44CE-9DF8-176792FF565F.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.RoleInheritsRole.PermissionsFrom/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=DBC7ACA6-37CE-4240-B381-3A620DCEFFFC.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.RoleInheritsRole.UsersFrom/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=0FE4F9A5-5882-4F62-A032-12DB988021B0.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.RoleInheritsRole/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=CC87D3D7-4B13-4C96-8E26-982D14F37B64.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.RoleInheritsRole.'UsersFrom PermissionsFrom'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=5688207E-F502-423A-A93E-2635712AB5F4.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.RoleInheritsRole.UsersFrom/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=C468F4CB-B960-4E62-BFD7-253742C7484B.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.RolePermission.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=02961179-64DE-4884-A715-9D96DE092A2C.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.RolePermission.IsAuthorized/Rhetos.DatabaseGenerator.DefaultConcepts.BoolPropertyDatabaseDefinition, ID=FD035AC6-A167-4ED0-93E7-07546453CEA5.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Common.RolePermission.Role/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=BBDAB0A8-A2FA-4C6F-9D24-477A4A677460.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating EntityLoggingInfo Common.RolePermission/Rhetos.DatabaseGenerator.DefaultConcepts.EntityLoggingDefinition, ID=D6EE97FE-7F5E-4F2A-A41F-4BC3BF737B35.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.RolePermission.'Role Claim'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=199916A7-3FA2-44CA-A748-29222DE7E8FF.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.RolePermission.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=05E9B1D7-7FD5-4FAC-8F16-7A0A27A830B4.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Common.RolePermission.Role/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=9BBF5D5F-0751-4DB9-A073-2FA481678310.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlDefaultPropertyInfo Common.Log.ContextInfo/Rhetos.DatabaseGenerator.DefaultConcepts.SqlDefaultPropertyDatabaseDefinition, ID=5DCF264A-1F62-4233-837A-5E37F6111184.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlDefaultPropertyInfo Common.Log.Created/Rhetos.DatabaseGenerator.DefaultConcepts.SqlDefaultPropertyDatabaseDefinition, ID=D8825DEE-1934-498C-B280-BB87B3A8AD20.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlDefaultPropertyInfo Common.Log.UserName/Rhetos.DatabaseGenerator.DefaultConcepts.SqlDefaultPropertyDatabaseDefinition, ID=1D55AF2E-686D-42FD-8C7E-EFB2F3F65BD9.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating SqlDefaultPropertyInfo Common.Log.Workstation/Rhetos.DatabaseGenerator.DefaultConcepts.SqlDefaultPropertyDatabaseDefinition, ID=555C8283-118C-43FE-88BE-1D908A1A7AA5.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.LogRelatedItem.Log/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=8A7DF767-2166-41EE-9E3C-C0CDFAB32674.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.PrincipalHasRole.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=8224DE8F-778F-48C6-87F9-F7FFD34D77CA.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.PrincipalPermission.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=ACC3458A-ACB0-475E-93EB-7A122CBE57D3.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.PrincipalPermission.Principal/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=32E6D8A3-ADEA-4958-95AE-06B594B0900D.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.PrincipalHasRole.Role/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=828AF93D-E41D-4337-866E-DE2399C16DEE.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.RoleInheritsRole.PermissionsFrom/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=61D59CFC-2A3E-457A-8647-9224EDD632B9.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.RoleInheritsRole.UsersFrom/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=6A58CE87-824C-4897-8031-0815D8EAA3EE.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.RolePermission.Claim/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=F50CE6F3-E8D3-4371-9FEC-1300DB269CC9.
+2022-09-05 12:08:06.0183|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Common.RolePermission.Role/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=3000CD0A-586E-404C-9B43-8B1541F6C3F1.
+2022-09-05 12:08:06.0183|INFO|DatabaseGenerator|Creating 113 database objects.
+2022-09-05 12:08:06.5169|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-05 12:08:06.5471|INFO|DatabaseCleaner|Deleted 12 columns in data migration schemas, 7 remaining.
+2022-09-05 12:08:06.5502|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-05 12:08:06.5857|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-05 12:08:07.4422|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-05 12:08:08.2664|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-05 12:08:08.2762|INFO|Rhetos DbUpdate|Done.
+2022-09-05 12:08:31.3384|INFO|Rhetos DbUpdate base|Started 'dotnet' process 2872.
+2022-09-05 12:08:31.5557|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:08:31.5792|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:08:31.8994|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-05 12:08:32.0208|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-05 12:08:32.1609|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-05 12:08:32.1924|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:08:32.1924|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-05 12:08:32.1924|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-05 12:08:32.2157|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-05 12:08:32.2157|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-05 12:08:32.2157|INFO|DatabaseDeployment|Upgrading database.
+2022-09-05 12:08:32.2540|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-05 12:08:32.2540|INFO|DatabaseGenerator|Creating 0 database objects.
+2022-09-05 12:08:32.2734|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-05 12:08:32.2886|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:08:32.3009|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-05 12:08:32.3288|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-05 12:08:32.8398|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-05 12:08:33.2888|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-05 12:08:33.3012|INFO|Rhetos DbUpdate|Done.
+2022-09-05 12:12:04.7774|INFO|Rhetos DbUpdate base|Started 'dotnet' process 28620.
+2022-09-05 12:12:05.0838|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:12:05.1164|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:12:05.7162|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-05 12:12:05.9783|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-05 12:12:06.1079|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-05 12:12:06.1420|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:12:06.1499|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-05 12:12:06.1499|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-05 12:12:06.1787|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-05 12:12:06.1787|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-05 12:12:06.1787|INFO|DatabaseDeployment|Upgrading database.
+2022-09-05 12:12:06.2418|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-05 12:12:06.2562|INFO|DatabaseGenerator|Creating 0 database objects.
+2022-09-05 12:12:06.2562|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-05 12:12:06.2898|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:12:06.2898|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-05 12:12:06.3600|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-05 12:12:07.3044|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-05 12:12:07.9918|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-05 12:12:08.0078|INFO|Rhetos DbUpdate|Done.
+2022-09-05 12:20:15.7747|INFO|Rhetos DbUpdate base|Started 'dotnet' process 14752.
+2022-09-05 12:20:15.9719|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:20:15.9949|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:20:16.3168|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-05 12:20:16.4230|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-05 12:20:16.4929|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-05 12:20:16.5074|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:20:16.5074|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-05 12:20:16.5074|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-05 12:20:16.5189|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-05 12:20:16.5189|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-05 12:20:16.5189|INFO|DatabaseDeployment|Upgrading database.
+2022-09-05 12:20:16.5499|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-05 12:20:16.5499|INFO|DatabaseGenerator|Creating 0 database objects.
+2022-09-05 12:20:16.5687|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-05 12:20:16.5687|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:20:16.5687|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-05 12:20:16.6024|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-05 12:20:16.7476|WARN|MetadataWorkspaceFileProvider|Changing ProviderManifestToken from 2008 to 2012.
+2022-09-05 12:20:17.1203|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-05 12:20:17.5439|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-05 12:20:17.5581|INFO|Rhetos DbUpdate|Done.
+2022-09-05 12:55:58.2709|INFO|Rhetos DbUpdate base|Started 'dotnet' process 17540.
+2022-09-05 12:55:58.4876|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 12:55:58.5124|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 12:55:58.8238|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-05 12:55:58.9285|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-05 12:55:59.0022|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-05 12:55:59.0188|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:55:59.0188|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-05 12:55:59.0188|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-05 12:55:59.0188|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-05 12:55:59.0356|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-05 12:55:59.0356|INFO|DatabaseDeployment|Upgrading database.
+2022-09-05 12:55:59.0683|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-05 12:55:59.0683|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Book.SomeProperty/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=AD527FD2-5246-48DF-BD70-54383C6DE2F4.
+2022-09-05 12:55:59.0683|INFO|DatabaseGenerator|Creating 1 database objects.
+2022-09-05 12:55:59.1143|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-05 12:55:59.1143|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 12:55:59.1143|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-05 12:55:59.1482|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-05 12:55:59.7742|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-05 12:56:00.1604|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-05 12:56:00.1604|INFO|Rhetos DbUpdate|Done.
+2022-09-05 13:36:33.7037|INFO|Rhetos DbUpdate base|Started 'dotnet' process 29524.
+2022-09-05 13:36:33.9129|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-05 13:36:33.9385|INFO|DatabaseUpdate|Loading plugins.
+2022-09-05 13:36:34.2630|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-05 13:36:34.3851|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-05 13:36:34.6381|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-05 13:36:34.6929|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 13:36:34.6929|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-05 13:36:34.6929|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-05 13:36:34.7108|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-05 13:36:34.7108|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-05 13:36:34.7108|INFO|DatabaseDeployment|Upgrading database.
+2022-09-05 13:36:34.7422|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.BookTopic/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=63C937F7-B918-4731-AB2F-9A19C268E6B7.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.ChildrensBook/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=4E6CFFDF-9393-4FE7-8E23-F8EA8D90807B.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Comment/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=17E1FF45-0E87-4258-9F2B-4D32110B1B89.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Department/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=A20F2F94-3615-4004-A5E0-0EA06603A4C2.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Education/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=FA1816F7-C8B5-4A5C-AC0B-373C049203F7.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=D6C96A13-7333-4EF5-A83D-B1EDD9793B31.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.EmployeeDepartment/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=622CDAEF-537C-4E32-88F5-41504A7D3C88.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.ForeignBook/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=B65E69BE-83E0-4021-AD9B-D3B708B9BD90.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Manager/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=62BB0C51-1005-445B-BBA6-1B4DDD520326.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Person/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=57829D56-70A2-48B7-AB87-BA4726976D08.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating DataStructureInfo Bookstore.Topic/Rhetos.DatabaseGenerator.DefaultConcepts.EntityDatabaseDefinition, ID=B4F67C14-0125-4529-8355-CBD1EB95B093.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.BookTopic.Book/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=89EBCE19-6799-4A4C-8741-44B28CA293A8.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.BookTopic.Topic/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=D73309E4-B036-4431-B6AF-4316FE3A24C9.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.BookTopic.'Book Topic'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=3AB6DF8B-4B5B-4A41-8CB5-CC307742E8B7.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.BookTopic.Book/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=B110577B-5C90-4AFF-8B11-E48F64E66F26.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.ChildrensBook.AgeFrom/Rhetos.DatabaseGenerator.DefaultConcepts.IntegerPropertyDatabaseDefinition, ID=4BBC274D-D259-4C87-A5F8-04DA21E987A4.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.ChildrensBook.AgeTo/Rhetos.DatabaseGenerator.DefaultConcepts.IntegerPropertyDatabaseDefinition, ID=E8D385E4-62C3-4BE7-A72D-EF7A7201D0ED.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating UniqueReferenceInfo Bookstore.ChildrensBook/Rhetos.DatabaseGenerator.DefaultConcepts.UniqueReferenceDatabaseDefinition, ID=D389441F-534A-49B4-B360-A0654532F8A0.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Comment.Book/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=872D4474-057A-4BA0-B04C-41DEDA8365EF.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Comment.Text/Rhetos.DatabaseGenerator.DefaultConcepts.LongStringPropertyDatabaseDefinition, ID=8DB3DD64-B570-47F6-8649-1D301B2CAB94.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.Comment.Book/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=419248CE-5E62-4977-8174-668E2BD41ED7.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Department.Code/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=01B90593-EBF4-4B86-8CBC-584993A1266F.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Department.Description/Rhetos.DatabaseGenerator.DefaultConcepts.LongStringPropertyDatabaseDefinition, ID=1F558AF4-CD9D-4B0F-846A-998EACA01680.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.Department.Code/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=DE3AE7C4-9746-4534-855F-72A66202820B.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Education.DateOfEducation/Rhetos.DatabaseGenerator.DefaultConcepts.DateTimePropertyDatabaseDefinition, ID=076E978A-7857-4372-AC0E-0CE55CDCA6F5.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Education.Description/Rhetos.DatabaseGenerator.DefaultConcepts.LongStringPropertyDatabaseDefinition, ID=71CACEFF-C858-4B09-B666-7994DA0D59EA.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Education.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=06973B61-2A4F-415C-B0BA-B160C6883D02.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.Education.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=F9523C70-0326-429F-99ED-1B5D405B4AAC.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Employee.Name/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=64F0347B-A30C-4FE9-AC3C-A858DFF00DED.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Employee.VatNumber/Rhetos.DatabaseGenerator.DefaultConcepts.IntegerPropertyDatabaseDefinition, ID=6771D7CB-0AE7-4E9A-BADF-632D3BF32624.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.Employee.VatNumber/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=9AA8B019-2FE3-4B87-912A-1B4A081396C9.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.EmployeeDepartment.Department/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=B87C56AD-DABC-41B0-A5BD-9ACD994B4F49.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.EmployeeDepartment.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=1406C00C-C33A-4791-BDDC-940D23BAF07C.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.EmployeeDepartment.'Employee Department'/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=5FE2BB25-B6A3-4D3B-9558-A30F686A3B6F.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.EmployeeDepartment.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=388D359E-F021-4C0D-BCC2-757CBEB90C6F.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.ForeignBook.OriginalLanguage/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=69B534E8-2165-43BD-AF87-8D5BFB074559.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating UniqueReferenceInfo Bookstore.ForeignBook/Rhetos.DatabaseGenerator.DefaultConcepts.UniqueReferenceDatabaseDefinition, ID=C4BC3040-1D83-42E3-8D8A-6CC25E530662.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Manager.BonusInformation/Rhetos.DatabaseGenerator.DefaultConcepts.LongStringPropertyDatabaseDefinition, ID=6ECD39E4-818F-4453-BCE9-B7746132BA09.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating UniqueReferenceInfo Bookstore.Manager/Rhetos.DatabaseGenerator.DefaultConcepts.UniqueReferenceDatabaseDefinition, ID=1D27C1D3-68D9-45AF-9559-CCEC4EA80C64.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Book.Author/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=5C70F923-D1E4-4E1D-B3FE-5B9F685434E4.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.ForeignBook.Translator/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyDatabaseDefinition, ID=B583CF1A-350F-4956-8603-AA6D908312F1.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Person.Name/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=11B5F47B-0464-4E1F-B635-B908FBC3C653.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating PropertyInfo Bookstore.Topic.Name/Rhetos.DatabaseGenerator.DefaultConcepts.ShortStringPropertyDatabaseDefinition, ID=5184847C-1796-45CB-8112-CF706D629B52.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating SqlIndexMultipleInfo Bookstore.Topic.Name/Rhetos.DatabaseGenerator.DefaultConcepts.SqlIndexMultipleDatabaseDefinition, ID=D17D290A-B6F4-425B-A541-27D016D72059.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.BookTopic.Book/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=32DBD498-09D9-47A9-92E5-2B528011FF7C.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.Comment.Book/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=E983156C-E3D0-4C96-A069-D2B44307535A.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.Education.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=EFF61168-8379-4D29-8851-1BCC3668D19E.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.EmployeeDepartment.Department/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=E322C39D-B4D8-40D4-A786-1720F3FD69B3.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.EmployeeDepartment.Employee/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=53062A63-153A-4F46-8F03-A0E83D418DEA.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.Book.Author/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=E4A43257-2DE7-43DD-A722-7B30A4C434DE.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.ForeignBook.Translator/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=C60EBC33-38D8-42AB-84A7-C54D61B906EF.
+2022-09-05 13:36:34.7536|TRACE|DatabaseGeneratorChanges|Creating ReferencePropertyDbConstraintInfo Bookstore.BookTopic.Topic/Rhetos.DatabaseGenerator.DefaultConcepts.ReferencePropertyConstraintDatabaseDefinition, ID=96DA69A7-8755-4CCB-A1D4-7D87428EAE0B.
+2022-09-05 13:36:34.7536|INFO|DatabaseGenerator|Creating 52 database objects.
+2022-09-05 13:36:34.9448|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-05 13:36:34.9569|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-05 13:36:34.9569|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-05 13:36:34.9739|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-05 13:36:35.6862|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-05 13:36:36.2562|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-05 13:36:36.2562|INFO|Rhetos DbUpdate|Done.
+2022-09-06 07:26:03.0028|INFO|Rhetos DbUpdate base|Started 'dotnet' process 28860.
+2022-09-06 07:26:03.2153|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-06 07:26:03.2469|INFO|DatabaseUpdate|Loading plugins.
+2022-09-06 07:26:03.8102|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-06 07:26:03.9675|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-06 07:26:04.2998|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-06 07:26:04.3672|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-06 07:26:04.3729|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-06 07:26:04.3729|INFO|ConceptDataMigration|Executing 0 before-data-migration scripts.
+2022-09-06 07:26:04.3904|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-06 07:26:04.3904|INFO|ConceptDataMigration|Executing 0 after-data-migration scripts.
+2022-09-06 07:26:04.3904|INFO|DatabaseDeployment|Upgrading database.
+2022-09-06 07:26:04.4533|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-06 07:26:04.4533|INFO|DatabaseGenerator|Creating 0 database objects.
+2022-09-06 07:26:04.4669|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-06 07:26:04.4988|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 7 remaining.
+2022-09-06 07:26:04.4988|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-06 07:26:04.5515|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-06 07:26:05.2944|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-06 07:26:05.9967|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-06 07:26:05.9967|INFO|Rhetos DbUpdate|Done.
