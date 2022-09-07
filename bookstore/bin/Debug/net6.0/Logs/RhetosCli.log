@@ -477,3 +477,24 @@ ErrorNumber:2,State:0,Class:20
 2022-09-06 09:56:03.4034|INFO|ApplicationInitialization|Initialization ClaimGenerator.
 2022-09-06 09:56:03.7859|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
 2022-09-06 09:56:03.7972|INFO|Rhetos DbUpdate|Done.
+2022-09-06 15:29:24.5150|INFO|Rhetos DbUpdate base|Started 'dotnet' process 20552.
+2022-09-06 15:29:24.7361|INFO|Rhetos DbUpdate|Started in C:\Users\TomislavGvozdanovic\source\repos\bookstore\bookstore\bin\Debug\net6.0\
+2022-09-06 15:29:24.7646|INFO|DatabaseUpdate|Loading plugins.
+2022-09-06 15:29:25.1698|INFO|DatabaseDeployment|SQL connection: DataSource=LAP-GVOZDANOVIC\SQLEXPRESS, InitialCatalog=Bookstore
+2022-09-06 15:29:25.2969|INFO|DatabaseDeployment|Preparing Rhetos database.
+2022-09-06 15:29:25.5984|INFO|DatabaseDeployment|Cleaning old migration data.
+2022-09-06 15:29:25.6527|INFO|DatabaseCleaner|Deleted 0 columns in data migration schemas, 15 remaining.
+2022-09-06 15:29:25.6527|INFO|DatabaseDeployment|Executing data migration scripts.
+2022-09-06 15:29:25.6527|INFO|ConceptDataMigration|Executing 1 before-data-migration scripts.
+2022-09-06 15:29:25.9681|INFO|DataMigration|Executed 0 of 12 scripts.
+2022-09-06 15:29:25.9681|INFO|ConceptDataMigration|Executing 1 after-data-migration scripts.
+2022-09-06 15:29:25.9834|INFO|DatabaseDeployment|Upgrading database.
+2022-09-06 15:29:26.0302|INFO|DatabaseGenerator|Removing 0 database objects.
+2022-09-06 15:29:26.0302|INFO|DatabaseGenerator|Creating 0 database objects.
+2022-09-06 15:29:26.0451|INFO|DatabaseDeployment|Deleting redundant migration data.
+2022-09-06 15:29:26.0635|INFO|DatabaseCleaner|Deleted 4 columns in data migration schemas, 15 remaining.
+2022-09-06 15:29:26.0635|INFO|ApplicationInitialization|Loading generated plugins.
+2022-09-06 15:29:26.1049|INFO|ApplicationInitialization|Initializing EfMappingViews.
+2022-09-06 15:29:26.6163|INFO|ApplicationInitialization|Initialization ClaimGenerator.
+2022-09-06 15:29:27.0609|INFO|ApplicationInitialization|Initialization KeepSynchronizedRecomputeOnDeploy.
+2022-09-06 15:29:27.0756|INFO|Rhetos DbUpdate|Done.
