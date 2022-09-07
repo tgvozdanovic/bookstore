@@ -9373,6 +9373,10 @@
         {
           "PhysicalPath": "C:\\Users\\TomislavGvozdanovic\\source\\repos\\bookstore\\bookstore\\DslScripts\\Employees.rhe",
           "InPackagePath": "DslScripts\\Employees.rhe"
+        },
+        {
+          "PhysicalPath": "C:\\Users\\TomislavGvozdanovic\\source\\repos\\bookstore\\bookstore\\DslScripts\\Insert.rhe",
+          "InPackagePath": "DslScripts\\Insert.rhe"
         }
       ]
     }

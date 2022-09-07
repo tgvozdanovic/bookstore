@@ -202,6 +202,16 @@ namespace Bookstore
         /*DataStructureInfo ClassBody Bookstore.Iban_MinLengthFilter*/
     }
 
+    /*DataStructureInfo ClassAttributes Bookstore.InsertManyBooks*/
+    public class InsertManyBooks/*DataStructureInfo ClassInterace Bookstore.InsertManyBooks*/
+    {
+        /*PropertyInfo Attribute Bookstore.InsertManyBooks.NumberOfBooks*/
+        public int? NumberOfBooks { get; set; }
+        /*PropertyInfo Attribute Bookstore.InsertManyBooks.TitlePrefix*/
+        public string TitlePrefix { get; set; }
+        /*DataStructureInfo ClassBody Bookstore.InsertManyBooks*/
+    }
+
     /*DataStructureInfo ClassAttributes Bookstore.LongBooks*/
     public class LongBooks/*DataStructureInfo ClassInterace Bookstore.LongBooks*/
     {

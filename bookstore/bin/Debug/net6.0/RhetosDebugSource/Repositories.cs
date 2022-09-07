@@ -211,6 +211,8 @@ namespace Common
             builder.RegisterType<Bookstore.Repositories.EmployeeDepartment_Repository>().Keyed<IRepository>("Bookstore.EmployeeDepartment").InstancePerLifetimeScope();
             builder.RegisterType<Bookstore.Repositories.ForeignBook_Repository>().Keyed<IRepository>("Bookstore.ForeignBook").InstancePerLifetimeScope();
             builder.RegisterType<Bookstore.Repositories.Genre_Repository>().Keyed<IRepository>("Bookstore.Genre").InstancePerLifetimeScope();
+            builder.RegisterType<Bookstore.Repositories.InsertManyBooks_Repository>().Keyed<IRepository>("Bookstore.InsertManyBooks").InstancePerLifetimeScope();
+            builder.RegisterType<Bookstore.Repositories.InsertManyBooks_Repository>().Keyed<IActionRepository>("Bookstore.InsertManyBooks").InstancePerLifetimeScope();
             builder.RegisterType<Bookstore.Repositories.Manager_Repository>().Keyed<IRepository>("Bookstore.Manager").InstancePerLifetimeScope();
             builder.RegisterType<Bookstore.Repositories.Person_Repository>().Keyed<IRepository>("Bookstore.Person").InstancePerLifetimeScope();
             builder.RegisterType<Bookstore.Repositories.Topic_Repository>().Keyed<IRepository>("Bookstore.Topic").InstancePerLifetimeScope();

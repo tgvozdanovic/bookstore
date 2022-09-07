@@ -56,6 +56,9 @@ namespace Bookstore.Repositories
         private Genre_Repository _Genre_Repository;
         public Genre_Repository Genre { get { return _Genre_Repository ?? (_Genre_Repository = (Genre_Repository)Rhetos.Extensibility.NamedPluginsExtensions.GetPlugin(_repositories, @"Bookstore.Genre")); } }
 
+        private InsertManyBooks_Repository _InsertManyBooks_Repository;
+        public InsertManyBooks_Repository InsertManyBooks { get { return _InsertManyBooks_Repository ?? (_InsertManyBooks_Repository = (InsertManyBooks_Repository)Rhetos.Extensibility.NamedPluginsExtensions.GetPlugin(_repositories, @"Bookstore.InsertManyBooks")); } }
+
         private Manager_Repository _Manager_Repository;
         public Manager_Repository Manager { get { return _Manager_Repository ?? (_Manager_Repository = (Manager_Repository)Rhetos.Extensibility.NamedPluginsExtensions.GetPlugin(_repositories, @"Bookstore.Manager")); } }
 
@@ -1605,6 +1608,54 @@ namespace Bookstore.Repositories
         }
 
         /*DataStructureInfo RepositoryMembers Bookstore.Genre*/
+    }
+
+    /*DataStructureInfo RepositoryAttributes Bookstore.InsertManyBooks*/
+    public partial class InsertManyBooks_Repository : /*DataStructureInfo OverrideBaseType Bookstore.InsertManyBooks*/ global::Common.RepositoryBase
+        , IActionRepository/*DataStructureInfo RepositoryInterface Bookstore.InsertManyBooks*/
+    {
+        /*DataStructureInfo RepositoryPrivateMembers Bookstore.InsertManyBooks*/
+
+        public InsertManyBooks_Repository(Common.DomRepository domRepository, Common.ExecutionContext executionContext/*DataStructureInfo RepositoryConstructorArguments Bookstore.InsertManyBooks*/)
+        {
+            _domRepository = domRepository;
+            _executionContext = executionContext;
+            /*DataStructureInfo RepositoryConstructorCode Bookstore.InsertManyBooks*/
+        }
+
+        public void Execute(Bookstore.InsertManyBooks actionParameter)
+        {
+            Action<Bookstore.InsertManyBooks, Common.DomRepository, IUserInfo/*DataStructureInfo AdditionalParametersType Bookstore.InsertManyBooks*/> action_Object = (parameter, repository, userInfo) =>
+        {
+            for (int i = 0; i < parameter.NumberOfBooks; i++)
+            {
+                string newTitle = parameter.TitlePrefix + " - " + (i + 1);
+                var newBook = new Bookstore.Book { Code = "+++", Title = newTitle };
+                repository.Bookstore.Book.Insert(newBook);
+            }
+     };
+
+            bool allEffectsCompleted = false;
+            try
+            {
+                /*ActionInfo BeforeAction Bookstore.InsertManyBooks*/
+                action_Object(actionParameter, _domRepository, _executionContext.UserInfo/*DataStructureInfo AdditionalParametersArgument Bookstore.InsertManyBooks*/);
+                /*ActionInfo AfterAction Bookstore.InsertManyBooks*/
+                allEffectsCompleted = true;
+            }
+            finally
+            {
+                if (!allEffectsCompleted)
+                    _executionContext.PersistenceTransaction.DiscardOnDispose();
+            }
+        }
+
+        void IActionRepository.Execute(object actionParameter)
+        {
+            Execute((Bookstore.InsertManyBooks) actionParameter);
+        }
+
+        /*DataStructureInfo RepositoryMembers Bookstore.InsertManyBooks*/
     }
 
     /*DataStructureInfo RepositoryAttributes Bookstore.Manager*/

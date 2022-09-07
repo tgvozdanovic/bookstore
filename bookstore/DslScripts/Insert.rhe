@@ -1,0 +1,17 @@
+﻿Module Bookstore
+{
+    Action InsertManyBooks
+    '(parameter, repository, userInfo) =>
+        {
+            for (int i = 0; i < parameter.NumberOfBooks; i++)
+            {
+                string newTitle = parameter.TitlePrefix + " - " + (i + 1);
+                var newBook = new Bookstore.Book { Code = "+++", Title = newTitle };
+                repository.Bookstore.Book.Insert(newBook);
+            }
+     }'
+{
+    Integer NumberOfBooks;
+    ShortString TitlePrefix;
+}
+}
