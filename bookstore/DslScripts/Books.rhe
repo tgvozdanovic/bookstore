@@ -18,8 +18,9 @@
 
 Module Bookstore
 {
-   Entity Book
+   MonitoredRecord Book
    {
+
       ShortString Code { Required; AutoCode; }
       ShortString Title { Required; }
       Integer NumberOfPages;

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -15,6 +15,10 @@
 		<PackageReference Include="Rhetos.Host.AspNet" Version="5.2.0" />
 		<PackageReference Include="Rhetos.MSBuild" Version="5.2.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bookstore.RhetosExtensions\Bookstore.RhetosExtensions.csproj" />
 	</ItemGroup>
 
 </Project>
