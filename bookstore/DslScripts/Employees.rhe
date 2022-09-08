@@ -3,6 +3,7 @@
 	Entity Employee
     {
         Integer IdentificationNumber;
+        ShortString UserName { Required; }
         ShortString LastName { Required; }
         ShortString FirstName { Required; }
         ShortString Code { RegExMatch "\d{5,15}" "Code must have 5 to 15 digits."; }
